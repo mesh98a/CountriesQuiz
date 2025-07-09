@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#globeViz {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#menu h1 {
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+#menu button {
+    margin: 10px 0;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #00bfa5;
+    color: #fff;
+    transition: background 0.3s;
+}
+
+#menu button:hover {
+    background: #008c7a;
+}
+
+#game {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    color: white;
+    /* damit Mausereignisse durchgehen, außer gezielt überschrieben */
+}
+
+#topCenter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: auto;
+}
+
+#globeContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#backBtn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #0099bf;
+    color: #fff;
+    transition: background 0.3s;
+}
+
+#backBtn:hover {
+    background: #008e76;
+}
+
+#skipBtn {
+    position: fixed;
+    top: 20px;
+    right: 20%;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #0099bf;
+    color: #fff;
+    transition: background 0.3s;
+}
+
+#skipBtn:hover {
+    background: #008e76;
+}
+
+#question {
+    background-color: white;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 4px;
+    /* optional, für abgerundete Ecken */
+    display: inline-block;
+    /* damit nur der Textbereich den Hintergrund hat */
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#score {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    /* leicht dunkler Hintergrund */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 1.2em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* weicher Schatten */
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+    /* optional für glassy Look */
+}
