@@ -1,0 +1,28 @@
+# Node.js modules (falls du Node benutzt)
+node_modules/
+
+# Build-Ordner (falls du einen hast)
+dist/
+build/
+
+# Lokale Umgebungsdateien
+.env
+.env.local
+.env.*.local
+
+# Log-Dateien
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System-Dateien
+.DS_Store
+Thumbs.db
+
+# Editor-spezifische Dateien (Visual Studio Code, JetBrains, etc.)
+.vscode/
+.idea/
+
+# Temporäre Dateien
+*.tmp
+*.tem
