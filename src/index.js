@@ -4,6 +4,7 @@ import Globe from 'globe.gl';
 import { setupGame } from './gamelogic.js';
 import './style.css';
 import getStarfield from './getStarfield.js';
+import { getCountryFeatureByCode } from './flags.js';
 
 
 // Globe initialisieren
@@ -65,34 +66,30 @@ fetch('custom.geo.json')
         world.polygonsData(geoJsonData);
     });
 
-window.addEventListener('resize', () => {
+/* window.addEventListener('resize', () => {
     world.width([globeContainer.clientWidth]);
     world.height([globeContainer.clientHeight]);
-});
+}); */
 
-// Tooltip
-/* const tooltip = document.createElement('div');
-tooltip.style.position = 'absolute';
-tooltip.style.background = 'rgba(0,0,0,0.7)';
-tooltip.style.color = '#fff';
-tooltip.style.padding = '5px';
-tooltip.style.borderRadius = '4px';
-tooltip.style.pointerEvents = 'none';
-tooltip.style.display = 'none';
-document.body.appendChild(tooltip); */
-function getCentroid(feature) {
-  const coords = feature.geometry.coordinates;
-  // Achtung: je nach GeoJSON Typ (Polygon, MultiPolygon) ist das komplexer
-  // Für einfache Polygone, z.B. erstes Polygon:
-  let points = coords[0];
-  let latSum = 0;
-  let lngSum = 0;
-  points.forEach(point => {
-    lngSum += point[0];
-    latSum += point[1];
-  });
-  return {
-    lng: lngSum / points.length,
-    lat: latSum / points.length,
-  };
+function resizeGlobe() {
+    const width = globeContainer.clientWidth;
+    const height = globeContainer.clientHeight;
+    world.width(width);
+    world.height(height);
 }
+// Initial einmal setzen:
+resizeGlobe();
+// Dann bei jeder Fensteränderung
+window.addEventListener('resize', resizeGlobe);
+
+/* function scaleApp() {
+  const scaleX = window.innerWidth / 1920;
+  const scaleY = window.innerHeight / 1080;
+  const scale = Math.min(scaleX, scaleY); // Seitenverhältnis beibehalten
+
+  const app = document.getElementById('app');
+  app.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener('resize', scaleApp);
+scaleApp(); */

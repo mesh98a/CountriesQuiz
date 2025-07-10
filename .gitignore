@@ -1,7 +1,4 @@
-# Node.js modules (falls du Node benutzt)
-node_modules/
-
-# Build-Ordner (falls du einen hast)
+node_modules
 dist/
 build/
 

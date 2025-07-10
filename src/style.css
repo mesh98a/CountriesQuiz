@@ -10,6 +10,20 @@ body {
     overflow: hidden;
 }
 
+#app {
+  width: 1920px;   /* dein Basis-Design */
+  height: 1080px;
+  transform-origin: top left;
+}
+
+/* #globeViz, #game, #menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+} */
+
 #globeViz {
     width: 100%;
     height: 100%;
@@ -62,7 +76,6 @@ body {
     width: 100%;
     z-index: 10;
     color: white;
-    /* damit Mausereignisse durchgehen, außer gezielt überschrieben */
 }
 
 #topCenter {
@@ -72,12 +85,9 @@ body {
     transform: translateX(-50%);
     text-align: center;
     pointer-events: auto;
+    margin: 0.5em 0;
 }
 
-#globeContainer {
-    width: 100%;
-    height: 100%;
-}
 
 #backBtn {
     position: absolute;
@@ -138,8 +148,8 @@ body {
     border-radius: 12px;
     font-size: 1.2em;
     font-weight: bold;
+    margin-top: 1em;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    /* weicher Schatten */
     z-index: 1000;
     backdrop-filter: blur(4px);
     /* optional für glassy Look */
