@@ -4,7 +4,12 @@ const loader = new THREE.TextureLoader();
 const flagTextures = {};
 
 // Liste der Länder-Codes, die du brauchst (ISO A2)
-const countryCodes = ['DE','FR','IT','ES','GB','AT','SE','PT','NL','BE'];
+const countryCodes = [
+  'AL','AD','AM','AT','AZ','BY','BE','BA','BG','HR','CY','CZ','DK','EE','FI',
+  'FR','GE','DE','GR','HU','IS','IE','IT','KZ','XK','LV','LI','LT','LU','MT',
+  'MD','MC','ME','NL','MK','NO','PL','PT','RO','RU','SM','RS','SK','SI','ES',
+  'SE','CH','TR','UA','GB','VA'
+];
 
 // Flaggen laden
 countryCodes.forEach(code => {
@@ -14,6 +19,7 @@ countryCodes.forEach(code => {
 // Funktion, die das Material zurückgibt
 export function getAllFlagMaterial(countryCode) {
   const texture = flagTextures[countryCode];
+  console.log(countryCode)
   if (texture) {
     return new THREE.MeshBasicMaterial({ map: texture });
   }

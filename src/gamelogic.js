@@ -10,6 +10,7 @@ export function setupGame(world, features) {
     const feedbackEl = document.getElementById('feedback');
     const skipButton = document.getElementById('skipBtn');
 
+
     function pickRandomCountry() {
         const europeCountries = features.filter(
             f => f.properties.continent === 'Europe'
@@ -32,7 +33,7 @@ export function setupGame(world, features) {
 
 
     const guessedIsoCodes = new Set();
-    const usedIsoCodes = new Set(); 
+    const usedIsoCodes = new Set();
 
     let selectedCountryName = null;
     let selectedIso = null;
@@ -48,28 +49,26 @@ export function setupGame(world, features) {
             feedbackEl.textContent = '✅ Correct!';
             guessedIsoCodes.add(selectedIso);
             usedIsoCodes.add(selectedIso);
-            setTimeout(() => {
-                feedbackEl.textContent = '';
-                pickRandomCountry();
-                //selectedCountryName = null
-                world.polygonCapMaterial(({ properties }) => {
-                    const code = properties.iso_a2_eh;
-                    return guessedIsoCodes.has(code)
-                        ? getFlagMaterial(code)
-                        : new THREE.MeshBasicMaterial({
-                            color: 'rgba(0, 200, 167, 0.5)'
-                        });
-                });
-                //updateGlobeColors(world, selectedCountryName);
-            }, 1500);
+            //selectedCountryName = null
+            world.polygonCapMaterial(({ properties }) => {
+                const code = properties.iso_a2_eh;
+                return guessedIsoCodes.has(code)
+                    ? getFlagMaterial(code)
+                    : new THREE.MeshBasicMaterial({
+                        color: 'rgba(0, 200, 167, 0.5)'
+                    });
+            });
+             pickRandomCountry();
+            //updateGlobeColors(world, selectedCountryName);
+
         } else {
             feedbackEl.textContent = '❌ Wrong!';
         }
 
         scoreEl.textContent = `Score: ${score}`;
-        setTimeout(() => {
-            feedbackEl.textContent = '';
-        }, 1500);
+        /*     setTimeout(() => {
+                feedbackEl.textContent = '';
+            }, 1500); */
     });
 
 
