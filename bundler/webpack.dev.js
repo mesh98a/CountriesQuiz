@@ -38,7 +38,7 @@ module.exports = merge(commonConfiguration, {
         const domain2 = `http${https}://localhost:${port}`;
 
         console.log(
-            `Проект запущен на:\n  - ${infoColor(domain1)}\n  - ${infoColor(domain2)}`
+            `Server gestartet:\n  - ${infoColor(domain1)}\n  - ${infoColor(domain2)}`
         );
 
         return middlewares;

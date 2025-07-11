@@ -16,19 +16,9 @@ countryCodes.forEach(code => {
   flagTextures[code] = loader.load(`flags/${code.toLowerCase()}.png`);
 });
 
-// Funktion, die das Material zurückgibt
-export function getAllFlagMaterial(countryCode) {
-  const texture = flagTextures[countryCode];
-  console.log(countryCode)
-  if (texture) {
-    return new THREE.MeshBasicMaterial({ map: texture });
-  }
-  // Fallback-Material wenn Flagge nicht da
-  return new THREE.MeshBasicMaterial({ color: 'rgba(0, 200, 167, 0.5)' });
-}
 
 export function getFlagMaterial(countryCode) {
-  const upperCode = countryCode?.toUpperCase(); // z. B. "de" → "DE"
+  const upperCode = countryCode?.toUpperCase();
   const texture = flagTextures[upperCode];
 
   if (texture) {

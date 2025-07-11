@@ -10,19 +10,6 @@ body {
     overflow: hidden;
 }
 
-#app {
-  width: 1920px;   /* dein Basis-Design */
-  height: 1080px;
-  transform-origin: top left;
-}
-
-/* #globeViz, #game, #menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1920px;
-  height: 1080px;
-} */
 
 #globeViz {
     width: 100%;

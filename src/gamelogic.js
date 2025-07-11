@@ -42,7 +42,6 @@ export function setupGame(world, features) {
         if (!targetCountry) return;
         selectedCountryName = clickedFeature.properties.name;
         selectedIso = clickedFeature.properties.iso_a2_eh;
-        console.log(typeof (selectedIso))
         //updateGlobeColors(world, selectedCountryName);
         if (clickedFeature.properties.name === targetCountry.properties.name) {
             score++;
@@ -66,9 +65,6 @@ export function setupGame(world, features) {
         }
 
         scoreEl.textContent = `Score: ${score}`;
-        /*     setTimeout(() => {
-                feedbackEl.textContent = '';
-            }, 1500); */
     });
 
 
