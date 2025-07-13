@@ -5,10 +5,15 @@ const flagTextures = {};
 
 // Liste der Länder-Codes, die du brauchst (ISO A2)
 const countryCodes = [
-  'AL','AD','AM','AT','AZ','BY','BE','BA','BG','HR','CY','CZ','DK','EE','FI',
-  'FR','GE','DE','GR','HU','IS','IE','IT','KZ','XK','LV','LI','LT','LU','MT',
-  'MD','MC','ME','NL','MK','NO','PL','PT','RO','RU','SM','RS','SK','SI','ES',
-  'SE','CH','TR','UA','GB','VA'
+  'AE','AF','AG','AL','AM','AO','AQ','AR','AT','AU','AZ','BA','BB','BD','BE','BF','BG','BH','BI','BJ','BN','BO','BR',
+  'BS','BT','BW','BY','BZ','CA','CD','CF','CG','CH','CI','CL','CM','CN','CO','CR','CU','CV','CY','CZ','DE','DJ','DK',
+  'DM','DO','DZ','EC','EE','EG','EH','ER','ES','ET','FI','FJ','FK','FR','GA','GB','GD','GE','GH','GL','GM','GN','GQ',
+  'GR','GT','GW','GY','HN','HR','HT','HU','ID','IE','IL','IN','IQ','IR','IS','IT','JM','JO','JP','KE','KG','KH','KM',
+  'KP','KR','KW','KZ','LA','LB','LC','LI','LK','LR','LS','LT','LU','LV','LY','MA','MC','MD','ME','MG','MK','ML','MM',
+  'MN','MR','MT','MU','MV','MW','MX','MY','MZ','NA','NC','NE','NG','NI','NL','NO','NP','NZ','OM','PA','PE','PG','PH',
+  'PK','PL','PR','PS','PT','PY','QA','RO','RS','RU','RW','SA','SB','SD','SE','SG','SI','SK','SL','SM','SN','SO','SR',
+  'SS','SV','SY','SZ','TD','TG','TH','TJ','TL','TM','TN','TR','TT','TW','TZ','UA','UG','US','UY','UZ','VA','VE','VN',
+  'VU','XK','YE','ZA','ZM','ZW'
 ];
 
 // Flaggen laden

@@ -2,39 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Globus</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Globus</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div id="app">
-        <div id="globeViz"></div>
-        <div id="menu">
-            <h1>Guess the country!</h1>
-            <button id="playBtn">Play</button>
-            <button id="optionsBtn">Options</button>
-            <button id="mapBtn">Map</button>
-        </div>
-        <div id="game" style="display:none;">
-            <div id="topCenter">
-                <p id="question">
-                </p>
-                <p id="feedback"></p>
-            </div>
-            <p id="score"> 🏆Score: 0</p>
-            <button id="skipBtn">Überspringen</button>
+  <div id="app">
+    <div id="globeViz"></div>
 
+    <!-- Main Menu -->
+    <div id="main-menu" class="menu-window">
+      <h1>Guess the country!</h1>
+      <button id="playBtn" class="button">Play</button>
+      <button id="optionsBtn" class="button">Options</button>
+      <button id="learnBtn" class="button">Learn</button>
+    </div>
+    
+    <!-- Game UI -->
+    <div id="game" style="display: none;">
+      <button id="playBackBtn" class="button back-button">Back to Menu</button>
+
+      <div id="countryPrompt" class="menu-window">
+          <p id="country">COUNTRY</p>
+      </div>
+
+      <div id="feedback" class="feedback-msg"></div>
+    
+      <div id="topRightPanel">
+        <div id="scoreWrapper">
+          <div id="score" class="menu-window">🏆 Score: 0</div>
+          <div id="pointsChange" class="points-float"></div>
         </div>
-        <div id="options"></div>
-        <div id="map"></div>
-        <button id="backBtn"style="display: none;">Back to Menu</button>
+        <button id="skipBtn" class="button">Skip</button>
+      </div>
     </div>
+    
+    <!-- Options Menu -->
+    <div id="options" class="menu-window" style="display: none;">
+      <div class="options-header">
+        <h2>Select Continents:</h2>
+      </div>
+    
+      <div class="options-form">
+        <form id="continentForm">
+          <label><input type="checkbox" name="continent" value="Africa" checked> Africa</label>
+          <label><input type="checkbox" name="continent" value="Asia" checked> Asia</label>
+          <label><input type="checkbox" name="continent" value="Europe" checked> Europe</label>
+          <label><input type="checkbox" name="continent" value="North America" checked> North America</label>
+          <label><input type="checkbox" name="continent" value="South America" checked> South America</label>
+          <label><input type="checkbox" name="continent" value="Oceania" checked> Oceania</label>
+          <label><input type="checkbox" name="continent" value="Antarctica" checked> Antarctica</label>
+        </form>
+      </div>
+    
+      <button id="saveExitBtn" class="button">Save and Exit</button>
     </div>
+
+    <!-- Learn UI -->
+    <div id="learn" style="display: none;">
+      <button id="learnBackBtn" class="button back-button">Back to Menu</button>
+      <div id="countryLabel" class="menu-window"></div>
     </div>
-    <!--<canvas class="canvas"></canvas>-->
+  </div>
 </body>
 
 </html>

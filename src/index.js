@@ -1,80 +1,114 @@
 import Globe from 'globe.gl';
+import * as THREE from 'three'; // Fix for THREE not defined
 import { setupGame } from './gamelogic.js';
 import './style.css';
 import getStarfield from './getStarfield.js';
 import { getFullMap } from './map.js';
 
-
-// Globe initialisieren
-const world = Globe()
-    (document.getElementById('globeViz'))
-    .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
-    //.bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
-    .polygonCapColor(() => 'rgba(0, 200, 167, 0.5)')
-    .polygonSideColor(() => 'rgba(0, 55, 100, 0.2)')
-    .polygonStrokeColor(() => '#111')
-    .polygonAltitude(0.01);
-
-const starfield = getStarfield({ numStars: 5000});
-world.scene().add(starfield);
-const globeContainer = document.getElementById('globeViz');
-
 let geoJsonData = null;
+let selectedContinents = new Set([
+    'Africa', 'Asia', 'Europe',
+    'North America', 'South America',
+    'Oceania', 'Antarctica'
+]);
 
-document.getElementById('playBtn').addEventListener('click', () => {
-    showSection('game')
+let world;
 
-    if (geoJsonData) {
-        setupGame(world, geoJsonData); // Spiel erst hier starten
-    } else {
-        console.error("GeoJSON data not loaded yet.");
+document.addEventListener('DOMContentLoaded', () => {
+    const globeContainer = document.getElementById('globeViz');
+
+    world = Globe()(globeContainer)
+        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+        .polygonCapColor(() => 'rgba(0, 200, 167, 0.5)')
+        .polygonSideColor(() => 'rgba(0, 55, 100, 0.2)')
+        .polygonStrokeColor(() => '#111')
+        .polygonAltitude(0.01);
+
+    const starfield = getStarfield({ numStars: 5000 });
+    world.scene().add(starfield);
+
+    resizeGlobe();
+    window.addEventListener('resize', resizeGlobe);
+
+    function resizeGlobe() {
+        const width = globeContainer.clientWidth;
+        const height = globeContainer.clientHeight;
+        world.width(width);
+        world.height(height);
     }
-})
-document.getElementById('optionsBtn').addEventListener('click', () => showSection('options'));
 
-document.getElementById('mapBtn').addEventListener('click', () => {
+    // Load GeoJSON
+    fetch('custom.geo.json')
+        .then(res => res.json())
+        .then(data => {
+            geoJsonData = data.features;
+            world.polygonsData(geoJsonData);
+        });
 
-    showSection('map');
-
-    getFullMap(world, geoJsonData);
-
-});
-
-document.getElementById('backBtn').addEventListener('click', () => showSection('menu'));
-
-// GeoJSON laden
-fetch('custom.geo.json')
-    .then(res => res.json())
-    .then(data => {
-        geoJsonData = data.features
-        world.polygonsData(geoJsonData);
+    // Form logic
+    const continentForm = document.getElementById('continentForm');
+    continentForm.addEventListener('change', () => {
+        selectedContinents.clear();
+        document.querySelectorAll('input[name="continent"]:checked')
+            .forEach(el => selectedContinents.add(el.value));
     });
 
-function resizeGlobe() {
-    const width = globeContainer.clientWidth;
-    const height = globeContainer.clientHeight;
-    world.width(width);
-    world.height(height);
-}
-// Initial einmal setzen:
-resizeGlobe();
-// Dann bei jeder Fensteränderung
-window.addEventListener('resize', resizeGlobe);
+    // Button handlers
+    document.getElementById('playBtn')?.addEventListener('click', () => {
+        showSection('game');
+        if (geoJsonData) {
+            setupGame(world, geoJsonData, selectedContinents);
+        }
+    });
 
+    document.getElementById('optionsBtn')?.addEventListener('click', () => showSection('options'));
 
-function showSection(sectionId) {
+    document.getElementById('learnBtn')?.addEventListener('click', () => {
+        showSection('learn');
+        getFullMap(world, geoJsonData);
+    });
 
-    document.getElementById('menu').style.display = 'none';
-    document.getElementById('game').style.display = 'none';
-    document.getElementById('options').style.display = 'none';
-    document.getElementById('map').style.display = 'none';
+    document.getElementById('playBackBtn')?.addEventListener('click', () => {
+        resetGame();
+        showSection('main-menu');
+    });
 
-    document.getElementById(sectionId).style.display = 'flex';
+    document.getElementById('learnBackBtn')?.addEventListener('click', () => {
+        resetGlobeColors();
+        showSection('main-menu');
+    });
 
-    // Nur Menü zeigt keinen Zurück-Button
-    if (sectionId === 'menu') {
-        document.getElementById('backBtn').style.display = 'none';
-    } else {
-        document.getElementById('backBtn').style.display = 'block';
+    document.getElementById('saveExitBtn')?.addEventListener('click', () => showSection('main-menu'));
+
+    // Show/hide UI sections
+    function showSection(sectionId) {
+        ['main-menu', 'game', 'options', 'learn'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+
+        const section = document.getElementById(sectionId);
+        if (section) section.style.display = 'flex';
+
+        const playBackBtn = document.getElementById('playBackBtn');
+        if (playBackBtn) {
+            playBackBtn.style.display = sectionId === 'main-menu' ? 'none' : 'block';
+        }
     }
-}
+
+    // Clear game UI + reset globe
+    function resetGame() {
+        document.getElementById('country').textContent = '';
+        document.getElementById('feedback').textContent = '';
+        document.getElementById('score').textContent = '🏆 Score: 0';
+        resetGlobeColors();
+    }
+
+    function resetGlobeColors() {
+        if (!world) return;
+
+        world.polygonCapMaterial(() =>
+            new THREE.MeshBasicMaterial({ color: 'rgba(0, 200, 167, 0.5)' })
+        );
+    }
+});

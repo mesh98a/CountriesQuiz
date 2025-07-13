@@ -1,143 +1,329 @@
+/* Base Reset */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-
+/* Globe Background */
 #globeViz {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-#menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* Reusable Panel Style */
+.menu-window {
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
 }
 
-#menu h1 {
-    margin-bottom: 40px;
-    font-size: 2.5em;
-    text-align: center;
+/* Button Base Style */
+.button {
+  padding: 12px 24px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #5d4037;
+  color: #fff;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 40;
 }
 
-#menu button {
-    margin: 10px 0;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #00bfa5;
-    color: #fff;
-    transition: background 0.3s;
+.button:hover {
+  background: #472e22;
+  transform: scale(1.03);
 }
 
-#menu button:hover {
-    background: #008c7a;
+.button:focus {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
+/* Main Menu */
+#main-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px 30px;
+  border-radius: 8px;
+}
+
+#main-menu h1 {
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  text-align: center;
+}
+
+#main-menu button {
+  margin: 10px 0;
+}
+
+/* Game UI */
 #game {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-    color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  z-index: 10;
+  pointer-events: none;
 }
 
-#topCenter {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    pointer-events: auto;
-    margin: 0.5em 0;
+#game * {
+  pointer-events: auto;
 }
 
-
-#backBtn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #0099bf;
-    color: #fff;
-    transition: background 0.3s;
+#playBackBtn {
+    max-width: 50%;
 }
 
-#backBtn:hover {
-    background: #008e76;
+#countryPrompt {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  z-index: 40;
 }
 
-#skipBtn {
-    position: fixed;
-    top: 20px;
-    right: 20%;
-    padding: 10px 20px;
-    font-size: 1em;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background: #0099bf;
-    color: #fff;
-    transition: background 0.3s;
+#country {
+  font-size: 1.4em;
 }
 
-#skipBtn:hover {
-    background: #008e76;
+#feedback {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px 16px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  z-index: 50;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-#question {
-    background-color: white;
-    color: black;
-    padding: 8px 12px;
-    border-radius: 4px;
-    /* optional, für abgerundete Ecken */
+#feedback.show {
+  opacity: 1;
+}
+
+.feedback-msg {
+  font-size: 1em;
+  color: #eee;
+  margin-top: 4px;
+  text-align: center;
+}
+
+#topRightPanel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+#scoreWrapper {
+    position: relative;
     display: inline-block;
-    /* damit nur der Textbereich den Hintergrund hat */
-    font-weight: bold;
-    font-size: 1.5em;
 }
 
 #score {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    /* leicht dunkler Hintergrund */
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 1.2em;
-    font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+#pointsChange {
+  position: absolute;
+  top: 55%;
+  left: 90%;
+  transform: translate(-50%);
+  font-size: 1em;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  z-index: 50;
+}
+
+#pointsChange.show {
+  opacity: 1;
+}
+
+#pointsChange.positive {
+  color: #57ff65;
+}
+
+#pointsChange.negative {
+  color: #ff5c5c;
+}
+
+.back-button {
+  width: max-content;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  pointer-events: auto;
+}
+
+/* Options Menu */
+#options {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: 360px;
+  padding: 40px 30px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#options h2 {
+  font-size: 1.4em;
+  margin-bottom: 1em;
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.5em;
+}
+
+#continentForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 20px;
+  width: 100%;
+  padding-top: 10px;
+}
+
+#continentForm label {
+  display: flex;
+  align-items: center;
+  font-size: 0.95em;
+  gap: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#continentForm input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid white;
+  border-radius: 4px;
+  background: transparent;
+  position: relative;
+  transition: 0.2s;
+}
+
+#continentForm input[type="checkbox"]:checked {
+  background-color: #00bfa5;
+  border-color: #00bfa5;
+}
+
+#continentForm input[type="checkbox"]::before {
+  content: '✓';
+  position: absolute;
+  left: 3px;
+  top: -2px;
+  font-size: 16px;
+  color: white;
+  display: none;
+}
+
+#continentForm input[type="checkbox"]:checked::before {
+  display: block;
+}
+
+#saveExitBtn {
+    margin-top: 40px;
+}
+
+/* Tooltip in Learn Mode */
+#countryLabel {
+  position: fixed;
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 50;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 768px) {
+  #topRightPanel {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1em;
     margin-top: 1em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    backdrop-filter: blur(4px);
-    /* optional für glassy Look */
+  }
+
+  #countryPrompt {
+    top: 15%;
+  }
+
+  #country {
+    font-size: 1.5em;
+  }
+
+  .button {
+    font-size: 0.9em;
+    padding: 10px 20px;
+  }
+
+  #options {
+    width: 90vw;
+  }
+
+  #continentForm {
+    grid-template-columns: 1fr;
+  }
 }
