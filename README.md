@@ -1,9 +1,18 @@
-# 📦 Webpack-Projekt – Abhängigkeiten erklärt
+# 🌍 CountriesQuiz – Lernspiel zum Länder Erraten
+**Technologien**: JavaScript, HTML, CSS, Three.js, Globe.Gl
 
-Dies ist eine Übersicht über die installierten Development-Abhängigkeiten in einem modernen Webpack-Projekt und ihre jeweilige Funktion.
+**Beschreibung**:
+CountriesQuiz ist ein interaktives Lernspiel, bei dem Nutzer spielerisch Länder auf einer 3D-Weltkarte erkennen und erraten können. Mit Hilfe von Three.js und GLTF/OBJ-Modellen wird eine drehbare Weltkugel dargestellt. Beim Spiel erscheinen Länder , und der Spieler muss das entsprechende Land auf der Karte anklicken
+
+**Ziel**:
+Geografie-Wissen spielerisch erweitern, besonders für Schüler und Lernende, die sich visuell orientieren
+
+# 📦 Webpack
+
+Dies ist eine Übersicht über die installierten Development-Abhängigkeiten.
 
 ## 🔧 Installationsbefehl
-
+Um die Projektumgebung für das Projekt mit Webpack aufzubauen, führt man im Terminal folgendes Kommando aus
 
 ```bash
 npm install webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-plugin copy-webpack-plugin @babel/core @babel/preset-env babel-loader css-loader file-loader html-loader html-webpack-plugin mini-css-extract-plugin portfinder-sync raw-loader style-loader ip --save-dev
