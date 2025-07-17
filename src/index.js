@@ -4,14 +4,9 @@ import { setupGame } from './gamelogic.js';
 import './style.css';
 import getStarfield from './getStarfield.js';
 import { getFullMap } from './map.js';
+import { getSelectedContinents, updateSelectedContinentsFromForm } from './options.js';
 
 let geoJsonData = null;
-let selectedContinents = new Set([
-    'Africa', 'Asia', 'Europe',
-    'North America', 'South America',
-    'Oceania', 'Antarctica'
-]);
-
 let world;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,19 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
             world.polygonsData(geoJsonData);
         });
 
-    // Form logic
+    // Filter
     const continentForm = document.getElementById('continentForm');
     continentForm.addEventListener('change', () => {
-        selectedContinents.clear();
-        document.querySelectorAll('input[name="continent"]:checked')
-            .forEach(el => selectedContinents.add(el.value));
+        updateSelectedContinentsFromForm(continentForm);
     });
 
-    // Button handlers
+
+    // start game
     document.getElementById('playBtn')?.addEventListener('click', () => {
         showSection('game');
         if (geoJsonData) {
-            setupGame(world, geoJsonData, selectedContinents);
+            setupGame(world, geoJsonData, new Set(getSelectedContinents()));
         }
     });
 
