@@ -47,6 +47,7 @@ npm run start
 - [Tutorial Globe](https://www.youtube.com/watch?v=f4zncVufL_I)
 - [Flags Material](https://www.countryflags.com/)
 - [GeoJson Datei](https://geojson-maps.kyd.au/)
+- [ISO-A2 Countries](https://www.ble.de/SharedDocs/Downloads/EN/Climate-Energy/Information-Nabisy/CountryCodes.pdf?__blob=publicationFile&v=1)
   
 
 
