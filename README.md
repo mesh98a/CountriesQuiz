@@ -2,7 +2,7 @@
 **Technologien**: JavaScript, HTML, CSS, Three.js, Globe.Gl
 
 **Beschreibung**:
-CountriesQuiz ist ein interaktives Lernspiel, bei dem Nutzer spielerisch Länder auf einer 3D-Weltkarte erkennen und erraten können. Mit Hilfe von Three.js und GLTF/OBJ-Modellen wird eine drehbare Weltkugel dargestellt. Beim Spiel erscheinen Länder , und der Spieler muss das entsprechende Land auf der Karte anklicken
+CountriesQuiz ist ein interaktives Lernspiel, bei dem Nutzer spielerisch Länder auf einer 3D-Weltkarte erkennen und erraten können. Mit Hilfe von Three.js wird eine drehbare Weltkugel dargestellt. Beim Spiel erscheinen Länder , und der Spieler muss das entsprechende Land auf der Karte anklicken
 
 **Ziel**:
 Geografie-Wissen spielerisch erweitern, besonders für Schüler und Lernende, die sich visuell orientieren
