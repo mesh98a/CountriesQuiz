@@ -44,7 +44,7 @@ npm run start
 # Quellen:
 - [Globe.GL Doku](https://globe.gl/)
 - [Tutorial WebPack](https://www.youtube.com/watch?v=fqHx8_U2eKU&list=PLEXzUhnWfEhgTVL_r3_njztkZdeQGNJCR&index=3)
-- [Tutoria Globe](https://www.youtube.com/watch?v=f4zncVufL_I)
+- [Tutorial Globe](https://www.youtube.com/watch?v=f4zncVufL_I)
 - [Flags Material](https://www.countryflags.com/)
 - [GeoJson Datei](https://geojson-maps.kyd.au/)
   
