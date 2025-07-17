@@ -7,11 +7,7 @@ CountriesQuiz ist ein interaktives Lernspiel, bei dem Nutzer spielerisch Länder
 **Ziel**:
 Geografie-Wissen spielerisch erweitern, besonders für Schüler und Lernende, die sich visuell orientieren
 
-#  Webpack
-
-Dies ist eine Übersicht über die installierten Development-Abhängigkeiten.
-
-##  Installationsbefehl
+#  Installationsbefehl
 Um die Projektumgebung für das Projekt mit Webpack aufzubauen, führt man im Terminal folgendes Kommando aus
 
 ```bash
@@ -41,7 +37,7 @@ npm install webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-p
 | `ip`              | Hilfsmodul zum Ermitteln der lokalen IP-Adresse – z.B. um den Dev-Server über das Netzwerk erreichbar zu machen. |
 | --save-dev       | speichert die installierten Pakete in devDependencies in der package.json |
 
-## Startbefehl:
+# Startbefehl:
 ```bash
 npm run start
 ```
