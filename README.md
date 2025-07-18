@@ -58,9 +58,11 @@ npm run start
 - [Globe.GL Doku](https://globe.gl/)
 - [Tutorial WebPack](https://www.youtube.com/watch?v=fqHx8_U2eKU&list=PLEXzUhnWfEhgTVL_r3_njztkZdeQGNJCR&index=3)
 - [Tutorial Globe](https://www.youtube.com/watch?v=f4zncVufL_I)
+- [Code für Sterne](https://github.com/bobbyroe/3d-globe-with-threejs/blob/main/src/getStarfield.js)
 - [Flags Material](https://www.countryflags.com/)
 - [GeoJson Datei](https://geojson-maps.kyd.au/)
 - [ISO-A2 Countries](https://www.ble.de/SharedDocs/Downloads/EN/Climate-Energy/Information-Nabisy/CountryCodes.pdf?__blob=publicationFile&v=1)
+  
   
 
 
