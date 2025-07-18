@@ -41,13 +41,28 @@ npm install webpack webpack-cli webpack-dev-server webpack-merge clean-webpack-p
 ```bash
 npm run start
 ```
+# Code
+| **JS-Datei**      | **Beschreibung**                                                    |
+| ----------------- | ------------------------------------------------------------------- |
+| `index.js`        | Zentrale Datei zur Erstellung des Globus und Steuerung des Menüs.   |
+| `flag.js`         | Zuständig für das Laden und Darstellen der Länderflaggen.           |
+| `gamelogic.js`    | Enthält die Spiellogik für den Play-Modus.                          |
+| `getStarfield.js` | Erzeugt den Sternenhintergrund.                                     |
+| `map.js`          | Stellt die gesamte Weltkarte mit Beschriftungen im Learn-Modus dar. |
+| `options.js`      | Implementiert die Filterfunktionen im Options-Modus.                |
+| `tooltip.js`      | Verwaltet die Anzeige von Labels und Tooltips.                      |
+                                                                          |
+
+
 # Quellen:
 - [Globe.GL Doku](https://globe.gl/)
 - [Tutorial WebPack](https://www.youtube.com/watch?v=fqHx8_U2eKU&list=PLEXzUhnWfEhgTVL_r3_njztkZdeQGNJCR&index=3)
 - [Tutorial Globe](https://www.youtube.com/watch?v=f4zncVufL_I)
+- [Code für Sterne](https://github.com/bobbyroe/3d-globe-with-threejs/blob/main/src/getStarfield.js)
 - [Flags Material](https://www.countryflags.com/)
 - [GeoJson Datei](https://geojson-maps.kyd.au/)
 - [ISO-A2 Countries](https://www.ble.de/SharedDocs/Downloads/EN/Climate-Energy/Information-Nabisy/CountryCodes.pdf?__blob=publicationFile&v=1)
+  
   
 
 
