@@ -3,7 +3,7 @@ import * as THREE from 'three';
 const loader = new THREE.TextureLoader();
 const flagTextures = {};
 
-// List of countries in (ISO A2)
+// ISO Alpha-2 country codes for which flag images exist
 const countryCodes = [
   'AE', 'AF', 'AG', 'AL', 'AM', 'AO', 'AQ', 'AR', 'AT', 'AU', 'AZ', 'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BN', 'BO', 'BR',
   'BS', 'BT', 'BW', 'BY', 'BZ', 'CA', 'CD', 'CF', 'CG', 'CH', 'CI', 'CL', 'CM', 'CN', 'CO', 'CR', 'CU', 'CV', 'CY', 'CZ', 'DE', 'DJ', 'DK',
@@ -16,11 +16,12 @@ const countryCodes = [
   'VU', 'XK', 'YE', 'ZA', 'ZM', 'ZW'
 ];
 
+// Load each country's flag image and store it in the flagTextures object
 countryCodes.forEach(code => {
   flagTextures[code] = loader.load(`flags/${code.toLowerCase()}.png`);
 });
 
-
+//Returns a THREE.js material with the flag texture of the given country.
 export function getFlagMaterial(countryCode) {
   const upperCode = countryCode?.toUpperCase();
   const texture = flagTextures[upperCode];

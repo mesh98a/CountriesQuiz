@@ -12,6 +12,7 @@ let world;
 document.addEventListener('DOMContentLoaded', () => {
     const globeContainer = document.getElementById('globeViz');
 
+    // Initialize the 3D globe
     world = Globe()(globeContainer)
         .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
         .polygonCapColor(() => 'rgba(0, 200, 167, 0.5)')
@@ -19,9 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         .polygonStrokeColor(() => '#111')
         .polygonAltitude(0.01);
 
+    // Add star background
     const starfield = getStarfield({ numStars: 5000 });
     world.scene().add(starfield);
 
+    // Handle window resize
     resizeGlobe();
     window.addEventListener('resize', resizeGlobe);
 
@@ -32,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         world.height(height);
     }
 
+    // Load custom GeoJSON data for countries
     fetch('custom.geo.json')
         .then(res => res.json())
         .then(data => {
@@ -39,11 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
             world.polygonsData(geoJsonData);
         });
 
+    // Listen for changes in the continent selection form
     const continentForm = document.getElementById('continentForm');
     continentForm.addEventListener('change', () => {
         updateSelectedContinentsFromForm(continentForm);
     });
 
+    // Start the game
     document.getElementById('playBtn')?.addEventListener('click', () => {
         showSection('game');
         if (geoJsonData) {
@@ -51,26 +57,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Navigate to options screen
     document.getElementById('optionsBtn')?.addEventListener('click', () => showSection('options'));
 
+    // Navigate to learning mode and show all flags
     document.getElementById('learnBtn')?.addEventListener('click', () => {
         showSection('learn');
         getFullMap(world, geoJsonData);
     });
 
+    // Return from game to main menu
     document.getElementById('playBackBtn')?.addEventListener('click', () => {
         resetGame();
         showSection('main-menu');
     });
 
+    // Return from learn mode to main menu
     document.getElementById('learnBackBtn')?.addEventListener('click', () => {
         resetGlobeColors();
         showSection('main-menu');
     });
 
+    // Exit options and return to main menu
     document.getElementById('saveExitBtn')?.addEventListener('click', () => showSection('main-menu'));
 
-    // Show/hide UI sections
+    // Show one section and hide all others
     function showSection(sectionId) {
         ['main-menu', 'game', 'options', 'learn'].forEach(id => {
             const el = document.getElementById(id);
@@ -86,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Clear game UI + reset globe
+    // Reset game UI and globe colors
     function resetGame() {
         document.getElementById('country').textContent = '';
         document.getElementById('feedback').textContent = '';
@@ -94,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         resetGlobeColors();
     }
 
+    // Reset all country colors on the globe to the default
     function resetGlobeColors() {
         if (!world) return;
 
