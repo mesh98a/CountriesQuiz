@@ -67,7 +67,7 @@ export function setupGame(world, features, selectedContinents) {
     skipButton.addEventListener('click', () => {
         feedbackEl.textContent = 'Skipped country';
         feedbackEl.classList.add('show');
-        usedIsoCodes.add(targetIso);
+        // Skipped country NOT added to usedIsoCodes
         pickRandomCountry();
         setTimeout(() => {
             feedbackEl.classList.remove('show');

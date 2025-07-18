@@ -1,5 +1,5 @@
 import Globe from 'globe.gl';
-import * as THREE from 'three'; // Fix for THREE not defined
+import * as THREE from 'three';
 import { setupGame } from './gamelogic.js';
 import './style.css';
 import getStarfield from './getStarfield.js';
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
         world.height(height);
     }
 
-    // Load GeoJSON
     fetch('custom.geo.json')
         .then(res => res.json())
         .then(data => {
@@ -40,14 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             world.polygonsData(geoJsonData);
         });
 
-    // Filter
     const continentForm = document.getElementById('continentForm');
     continentForm.addEventListener('change', () => {
         updateSelectedContinentsFromForm(continentForm);
     });
 
-
-    // start game
     document.getElementById('playBtn')?.addEventListener('click', () => {
         showSection('game');
         if (geoJsonData) {

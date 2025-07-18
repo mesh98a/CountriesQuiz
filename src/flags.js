@@ -16,7 +16,6 @@ const countryCodes = [
   'VU','XK','YE','ZA','ZM','ZW'
 ];
 
-// Load images
 countryCodes.forEach(code => {
   flagTextures[code] = loader.load(`flags/${code.toLowerCase()}.png`);
 });
@@ -30,6 +29,5 @@ export function getFlagMaterial(countryCode) {
     return new THREE.MeshBasicMaterial({ map: texture });
   }
 
-  // Fallback-Material
   return new THREE.MeshBasicMaterial({ color: 'rgba(0, 200, 167, 0.5)' });
 }
