@@ -50,8 +50,7 @@ npm run start
 | `getStarfield.js` | Erzeugt den Sternenhintergrund.                                     |
 | `map.js`          | Stellt die gesamte Weltkarte mit Beschriftungen im Learn-Modus dar. |
 | `options.js`      | Implementiert die Filterfunktionen im Options-Modus.                |
-| `tooltip.js`      | Verwaltet die Anzeige von Labels und Tooltips.                      |
-                                                                          |
+| `tooltip.js`      | Verwaltet die Anzeige von Labels und Tooltips.                      | 
 
 
 # Quellen:
