@@ -5,6 +5,7 @@ import './style.css';
 import getStarfield from './getStarfield.js';
 import { getFullMap } from './map.js';
 import { getSelectedContinents, updateSelectedContinentsFromForm } from './options.js';
+import { XRButton } from 'three/addons/webxr/XRButton.js';
 
 let geoJsonData = null;
 let world;
@@ -23,6 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add star background
     const starfield = getStarfield({ numStars: 5000 });
     world.scene().add(starfield);
+
+    const renderer = world.renderer ? world.renderer() : null;
+    if (renderer) {
+        renderer.xr.enabled = true;
+
+        try {
+            const arBtn = XRButton.createButton(renderer, {
+                // optionalFeatures erhöhen Kompatibilität mit AR-Geräten
+                optionalFeatures: ['local-floor', 'bounded-floor', 'hit-test']
+            });
+            // Falls ein #controls Container existiert, dort anhängen, sonst ins Globe-Container
+            const controlsContainer = document.getElementById('controls') || globeContainer;
+            controlsContainer.appendChild(arBtn);
+        } catch (err) {
+            console.warn('AR button konnte nicht erstellt werden:', err);
+        }
+
+        // Renderer-Loop auf WebXR umstellen, damit AR-Sitzungen gerendert werden
+        renderer.setAnimationLoop(() => {
+            renderer.render(world.scene(), world.camera());
+        });
+    } else {
+        console.warn('Renderer vom Globe-Objekt nicht erreichbar; AR-Button nicht angehängt.');
+    }
 
     // Handle window resize
     resizeGlobe();
